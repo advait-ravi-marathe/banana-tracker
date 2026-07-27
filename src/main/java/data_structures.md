@@ -20,6 +20,52 @@ We chose `ArrayList` for the current version of BananaTracker for several reason
 3. **Random Access**: It provides O(1) time complexity for accessing elements by index, making it efficient to retrieve specific users or transactions if their position is known.
 4. **Simplicity**: For a prototype or small-scale application, `ArrayList` is easy to implement and provides a good balance of performance and functionality.
 
+### Common Operations & Complexity
+
+| Operation | Method | Time Complexity | Description |
+| :--- | :--- | :--- | :--- |
+| **Access** | `get(index)` | O(1) | Direct access via index. |
+| **Search** | `contains(obj)`, `indexOf(obj)` | O(n) | Must iterate through the list. |
+| **Insertion (End)** | `add(obj)` | O(1)* | Amortized constant time. O(n) when resizing. |
+| **Insertion (Middle)** | `add(index, obj)` | O(n) | Must shift subsequent elements. |
+| **Deletion (End)** | `remove(size - 1)` | O(1) | No shifting required. |
+| **Deletion (Middle)** | `remove(index)`, `remove(obj)` | O(n) | Must shift subsequent elements. |
+| **Update** | `set(index, obj)` | O(1) | Replaces element at given index. |
+| **Size** | `size()` | O(1) | Returns the current count of elements. |
+
+**Space Complexity:**
+- **Average/Worst Case:** O(n), where `n` is the number of elements in the list.
+- **Internal Storage:** `ArrayList` allocates more memory than strictly needed (capacity vs. size) to minimize frequent resizing.
+
+### Syntax Examples
+
+```java
+ArrayList<String> fruits = new ArrayList<>();
+
+// 1. Insertion (End)
+fruits.add("Banana"); // ["Banana"]
+
+// 2. Insertion (Middle)
+fruits.add(0, "Apple"); // ["Apple", "Banana"]
+
+// 3. Access
+String first = fruits.get(0); // "Apple"
+
+// 4. Update
+fruits.set(1, "Mango"); // ["Apple", "Mango"]
+
+// 5. Deletion (Middle)
+fruits.remove(0); // Removes "Apple", list is now ["Mango"]
+fruits.remove("Mango"); // Removes by object, list is now []
+
+// 6. Search
+boolean hasMango = fruits.contains("Mango"); // false
+int index = fruits.indexOf("Mango"); // -1
+
+// 7. Size
+int count = fruits.size(); // 0
+```
+
 ### Five Rules of ArrayList
 1.  **Dynamic Resizing**: Unlike standard arrays, `ArrayList` grows automatically when elements are added.
 2.  **Ordered Collection**: It maintains the insertion order of elements.
